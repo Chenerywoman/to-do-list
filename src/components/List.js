@@ -43,11 +43,13 @@ class List extends Component {
             handleInput={this.handleInput}
           />
           {this.state.list.map((item, ind) => {
-            return <Task key={ind} task={item} handleRemoveTask={this.handleRemoveTask} />
+            return <Task key={ind} task={item} handleRemoveTask={this.handleRemoveTask}/>
           })
           }
+          <button type="button" onClick = {() => this.props.handleRemoveList(this.props.ind)}>
+          Remove List
+        </button>
         </div>
-  
       )
     }
   }
