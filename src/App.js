@@ -28,28 +28,40 @@ class App extends Component {
   }
 
   handleRemoveList = (ind) => {
-    let updatedArrayofLists = this.state.listOfLists;
+    let updatedArrayofLists = [...this.state.listOfLists];
       updatedArrayofLists.splice(ind, 1)
       this.setState({
         listOfLists: updatedArrayofLists
       });
   }
 
+  onDragStart = () => {
+
+  }
+
+  onDragOver = () => {
+
+  }
+
+  onDrop = () => {
+
+  }
+
   render(){
     console.log(`listofList in render method ${this.state.listOfLists}`)
     return (
       <div className="App">
-        <div className="title">Task List</div>
+        <h1 className="title">My Lists</h1>
         <div className="outer-container">
-          <AddListForm 
+          {this.state.listOfLists.map((name, ind) => {
+            console.log(name)
+            return <List key={ind} title={name} handleRemoveList={this.handleRemoveList} ind={ind} onDragStart={this.onDragStart} onDragOver={this.onDragOver} onDrop={this.onDrop}/>
+          })}
+           <AddListForm 
             listName={this.state.listName}
             handleAddList={this.handleAddList}
             handleListName={this.handleListName}
           />
-          {this.state.listOfLists.map((name, ind) => {
-            console.log(name)
-            return <List key={ind} title={name} handleRemoveList={this.handleRemoveList} ind={ind}/>
-          })}
         </div>
       </div>
     );
