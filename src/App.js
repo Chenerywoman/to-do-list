@@ -5,7 +5,7 @@ class App extends Component {
 
   state = {
 
-    input: "",
+    listofLists: [],
     list: []
   }
 
@@ -15,7 +15,7 @@ class App extends Component {
       });
   }
 
-  handleAdd = (event) => {
+  handleAddTask = (event) => {
     this.setState({
       list: [...this.state.list, this.state.input],
       input: ""
@@ -24,7 +24,7 @@ class App extends Component {
 
   }
 
-  handleRemove = (index) => {
+  handleRemoveTask = (index) => {
     let updatedArray = this.state.list;
     updatedArray.splice(index, 1)
       this.setState({
@@ -35,45 +35,59 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <>
-          <Form 
+        <div className="outer-container">
+            <AddTaskForm 
             value={this.state.input} 
-            handleAdd={this.handleAdd} 
+            handleAddTask={this.handleAddTask} 
             handleInput={this.handleInput}
             />
+          
           {this.state.list.map((item, ind) => {
             return (
-             <ListItem key={ind} task={item} handleRemove={this.handleRemove}/>
+             <Task key={ind} task={item} handleRemoveTask={this.handleRemoveTask}/>
             )
           })
 
           }
-        </>
+        </div>
       </div>
     );
   }
   
 }
 
-const Form = ({value, handleAdd, handleInput}) => {
- return ( <form onSubmit={handleAdd} action="">
+const AddTaskForm = ({value, handleAddTask, handleInput}) => {
+ return ( <form onSubmit={handleAddTask} action="">
     <input value={value} onChange={handleInput} type="text"/>
     <button type="submit">Add Task</button>
   </form>
  )
 }
 
-// const List = () => {
+// const List = ({list, handleInput, handleAddTask, handleRemoveTask}) => {
 //   return(
-//     <ListItem key={ind} task={item}/>
+//     <>
+//     <AddTaskForm   
+//     value={this.state.input} 
+//     handleAdd={this.handleAdd} 
+//     handleInput={this.handleInput}
+//     />
+//     {list.map((item, ind) => {
+//        return <Task key={ind} task={item} handleRemoveTask={handleRemoveTask}/>
+//     })
+     
+
+//     }
+    
+//     </>
 //   )
 // }
 
-const ListItem = ({ task, ind, handleRemove }) => {
+const Task = ({ task, ind, handleRemoveTask }) => {
   return (
     <>
       <div>{task}</div>
-     <button type="button" onClick = {() => handleRemove(ind)}>
+     <button type="button" onClick = {() => handleRemoveTask(ind)}>
         Remove Task
       </button>
     </>
