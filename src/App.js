@@ -4,15 +4,40 @@ import './App.css';
 class App extends Component {
 
   state = {
-    input: '',
-    listofLists: [],
+    listofLists: []
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <div className="title">Task List</div>
+        <div className="outer-container">
+          <List
+            input = {this.state.input}
+            list = {this.state.list}
+            handleInput = {this.handleInput}
+            handleAddTask = {this.handleAddTask}
+            handleRemoveTask = {this.handleRemoveTask}
+           />    
+        </div>
+      </div>
+    );
+  }
+  
+}
+
+class List extends Component {
+  //input, list, handleInput, handleAddTask, handleRemoveTask }) => {
+
+  state = {
+    input: "",
     list: []
   }
 
   handleInput = (event) => {
-      this.setState({
-        input: event.target.value
-      });
+    this.setState({
+      input: event.target.value
+    });
   }
 
   handleAddTask = (event) => {
@@ -27,43 +52,27 @@ class App extends Component {
   handleRemoveTask = (index) => {
     let updatedArray = this.state.list;
     updatedArray.splice(index, 1)
-      this.setState({
-        list: updatedArray
-      });
+    this.setState({
+      list: updatedArray
+    });
   }
 
-  render(){
+  render() {
     return (
-      <div className="App">
-        <div className="outer-container">
-          <List 
-            input = {this.state.input}
-            list = {this.state.list}
-            handleInput = {this.handleInput}
-            handleAddTask = {this.handleAddTask}
-            handleRemoveTask = {this.handleRemoveTask}
-           />    
-        </div>
+      <div className="list">
+        <AddTaskForm
+          value={this.state.input}
+          handleAddTask={this.handleAddTask}
+          handleInput={this.handleInput}
+        />
+        {this.state.list.map((item, ind) => {
+          return <Task key={ind} task={item} handleRemoveTask={this.handleRemoveTask} />
+        })
+        }
       </div>
-    );
-  }
-  
-}
 
-const List = ({ input, list, handleInput, handleAddTask, handleRemoveTask }) => {
-  return (
-    <>
-      <AddTaskForm
-        value={input}
-        handleAddTask={handleAddTask}
-        handleInput={handleInput}
-      />
-      {list.map((item, ind) => {
-        return <Task key={ind} task={item} handleRemoveTask={handleRemoveTask} />
-      })
-      }
-    </>
-  )
+    )
+  }
 }
 
 const AddTaskForm = ({value, handleAddTask, handleInput}) => {
