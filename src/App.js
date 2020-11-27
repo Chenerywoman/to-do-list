@@ -1,24 +1,55 @@
 import React, {Component} from 'react';
+import List from './components/List';
 import './App.css';
 
 class App extends Component {
 
   state = {
-    listofLists: []
+
+    listName: "",
+    listOfLists: []
+  }
+
+  handleListName = (event) => {
+    this.setState({
+      listName: event.target.value
+    });
+    console.log(`listName in handleListName ${this.state.listName}`)
+  }
+
+  handleAddList = (event) => {
+    console.log(`listName in handleAddList ${this.state.listName}`)
+    this.setState({
+      listofLists: [...this.state.listOfLists, this.state.listName],
+      listName: ""
+    });
+    event.preventDefault();
   }
 
   render(){
+    console.log(`listofList in render method ${this.state.listOfLists}`)
     return (
       <div className="App">
         <div className="title">Task List</div>
         <div className="outer-container">
-          <List
+          <AddListForm 
+            listName={this.listName}
+            handleAddList={this.handleAddList}
+            handleListName={this.handleListName}
+          />
+          {this.state.listOfLists.map((name, ind) => {
+            console.log(name)
+            return <List key={this.props.ind} title={this.props.name}/>
+          })}
+
+
+          {/* <List
             input = {this.state.input}
             list = {this.state.list}
             handleInput = {this.handleInput}
             handleAddTask = {this.handleAddTask}
             handleRemoveTask = {this.handleRemoveTask}
-           />    
+           />     */}
         </div>
       </div>
     );
@@ -26,74 +57,15 @@ class App extends Component {
   
 }
 
-class List extends Component {
-  //input, list, handleInput, handleAddTask, handleRemoveTask }) => {
-
-  state = {
-    input: "",
-    list: []
-  }
-
-  handleInput = (event) => {
-    this.setState({
-      input: event.target.value
-    });
-  }
-
-  handleAddTask = (event) => {
-    this.setState({
-      list: [...this.state.list, this.state.input],
-      input: ""
-    });
-    event.preventDefault();
-
-  }
-
-  handleRemoveTask = (index) => {
-    let updatedArray = this.state.list;
-    updatedArray.splice(index, 1)
-    this.setState({
-      list: updatedArray
-    });
-  }
-
-  render() {
-    return (
-      <div className="list">
-        <AddTaskForm
-          value={this.state.input}
-          handleAddTask={this.handleAddTask}
-          handleInput={this.handleInput}
-        />
-        {this.state.list.map((item, ind) => {
-          return <Task key={ind} task={item} handleRemoveTask={this.handleRemoveTask} />
-        })
-        }
-      </div>
-
-    )
-  }
-}
-
-const AddTaskForm = ({value, handleAddTask, handleInput}) => {
+const AddListForm = ({listName, handleAddList, handleListName}) => {
+  
   return ( 
-    <form onSubmit={handleAddTask} action="">
-     <input value={value} onChange={handleInput} type="text"/>
-     <button type="submit">Add Task</button>
+    <form onSubmit={handleAddList} action="">
+      <label htmlFor="">Name of List</label>
+     <input value={listName} onChange={handleListName} type="text"/>
+     <button type="submit" >Add List</button>
     </form>
   )
  }
-
-const Task = ({ task, ind, handleRemoveTask }) => {
-  return (
-    <>
-      <div>{task}</div>
-     <button type="button" onClick = {() => handleRemoveTask(ind)}>
-        Remove Task
-      </button>
-    </>
-  )
-}
-
 
 export default App;
