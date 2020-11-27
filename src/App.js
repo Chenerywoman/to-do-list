@@ -19,8 +19,12 @@ class App extends Component {
 
   handleAddList = (event) => {
     console.log(`listName in handleAddList ${this.state.listName}`)
+    let tempList = [...this.state.listOfLists];
+    tempList.push(this.state.listName)
+    console.log(`tempList ${tempList}`)
     this.setState({
-      listofLists: [...this.state.listOfLists, this.state.listName],
+      listOfLists: [...tempList],
+      // listofLists: [...this.state.listOfLists, this.state.listName],
       listName: ""
     });
     event.preventDefault();
