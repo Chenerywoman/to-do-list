@@ -5,7 +5,6 @@ import './App.css';
 class App extends Component {
 
   state = {
-
     listName: "",
     listOfLists: []
   }
@@ -21,13 +20,21 @@ class App extends Component {
     console.log(`listName in handleAddList ${this.state.listName}`)
     let tempList = [...this.state.listOfLists];
     tempList.push(this.state.listName)
-    console.log(`tempList ${tempList}`)
     this.setState({
       listOfLists: [...tempList],
       // listofLists: [...this.state.listOfLists, this.state.listName],
-      listName: ""
+      listName: "",
     });
+    console.log(this.state.listOfLIsts)
     event.preventDefault();
+  }
+
+  handleRemoveList = (ind) => {
+    let updatedArrayofLists = this.state.listOfLists;
+      updatedArrayofLists.splice(ind, 1)
+      this.setState({
+        listOfLists: updatedArrayofLists
+      });
   }
 
   render(){
@@ -43,17 +50,8 @@ class App extends Component {
           />
           {this.state.listOfLists.map((name, ind) => {
             console.log(name)
-            return <List key={this.props.ind} title={this.props.name}/>
+            return <List key={ind} title={name} handleRemoveList={this.handleRemoveList} ind={ind}/>
           })}
-
-
-          {/* <List
-            input = {this.state.input}
-            list = {this.state.list}
-            handleInput = {this.handleInput}
-            handleAddTask = {this.handleAddTask}
-            handleRemoveTask = {this.handleRemoveTask}
-           />     */}
         </div>
       </div>
     );
