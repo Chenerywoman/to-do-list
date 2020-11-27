@@ -3,5 +3,13 @@
     flex-direction: column;
     border: 1px solid red;
     flex-wrap: wrap;
-    width: 200px;
+    width: 250px;
   }
+
+h2 {
+    color: #C44536;
+}
+
+#delete-list {
+  width: 100px;
+}
