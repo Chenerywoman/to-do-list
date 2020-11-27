@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import AddListForm from './components/AddListForm';
 import List from './components/List';
 import './App.css';
 
@@ -13,16 +14,13 @@ class App extends Component {
     this.setState({
       listName: event.target.value
     });
-    console.log(`listName in handleListName ${this.state.listName}`)
   }
 
   handleAddList = (event) => {
-    console.log(`listName in handleAddList ${this.state.listName}`)
     let tempList = [...this.state.listOfLists];
     tempList.push(this.state.listName)
     this.setState({
-      listOfLists: [...tempList],
-      // listofLists: [...this.state.listOfLists, this.state.listName],
+      listOfLists: [...this.state.listOfLists, this.state.listName],
       listName: "",
     });
     console.log(this.state.listOfLIsts)
@@ -44,7 +42,7 @@ class App extends Component {
         <div className="title">Task List</div>
         <div className="outer-container">
           <AddListForm 
-            listName={this.listName}
+            listName={this.state.listName}
             handleAddList={this.handleAddList}
             handleListName={this.handleListName}
           />
@@ -58,16 +56,5 @@ class App extends Component {
   }
   
 }
-
-const AddListForm = ({listName, handleAddList, handleListName}) => {
-  
-  return ( 
-    <form onSubmit={handleAddList} action="">
-      <label htmlFor="">Name of List</label>
-     <input value={listName} onChange={handleListName} type="text"/>
-     <button type="submit" >Add List</button>
-    </form>
-  )
- }
 
 export default App;
