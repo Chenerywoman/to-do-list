@@ -8,7 +8,6 @@ class App extends Component {
   state = {
     listName: "",
     listOfLists: [],
-    input: "",
     list: {
       title: "",
       tasks: []
@@ -37,39 +36,32 @@ class App extends Component {
   }
 
   handleRemoveList = (ind) => {
+    
     let updatedArrayofLists = [...this.state.listOfLists];
       updatedArrayofLists.splice(ind, 1)
       this.setState({
         listOfLists: updatedArrayofLists
       });
-
     }
-
-  // handleInput = (event) => {
-  //   this.setState({
-  //     input: event.target.value
-  //   });
-  // }
-    
+  
   handleAddTaskToList = (input, listIndex) => {
-    console.log(`handleAddTaskToList: input ${input}, listIndex: ${listIndex}`)
 
-    let tempList = this.state.listOfLists[listIndex].title
-    console.log(`temp list in handleTaskToList: ${tempList}`)
-    
-    // this.setState({
-    //   listOfLists: [...this.state.list, this.state.input],
-    //   input: ""
-    // });
-    // event.preventDefault();
+    let newListOfLists = [...this.state.listOfLists];
+    newListOfLists[listIndex].tasks.push(input)
+
+    this.setState({
+      listOfLists: newListOfLists
+    });
 
   }
   
-  handleRemoveTask = (index) => {
-      const updatedArray = [...this.state.list];
-      updatedArray.splice(index, 1)
+  handleRemoveTask = (taskInd, listInd) => {
+    console.log(`in handleRemoveTask: taskInd ${taskInd}, listInd ${listInd}`)
+    let newListOfLists = [...this.state.listOfLists];
+    newListOfLists[listInd].tasks.splice(taskInd,1)
+     
       this.setState({
-        list: updatedArray
+        listOfLists: [...newListOfLists]
       });
   }
 
@@ -86,8 +78,6 @@ class App extends Component {
                 tasks={this.state.list.tasks}
                 title={list.title} 
                 handleRemoveList={this.handleRemoveList} 
-                // input={this.state.input}
-                // handleInput={this.handleInput}
                 handleAddTaskToList={this.handleAddTaskToList}
                 handleRemoveTask={this.handleRemoveTask}
             />
