@@ -22,14 +22,17 @@ class App extends Component {
   }
 
   handleAddList = (event) => {
+  
+    let newListOfLists = [...this.state.listOfLists]
+    let newList = {...this.state.list}
+    newList.title = this.state.listName
+    newListOfLists.push(newList)
+  
     this.setState({
-      list: {
-        title: this.state.listName,
-        tasks: []
-      },
-      listOfLists: [...this.state.listOfLists, this.state.list],
+      listOfLists: [...newListOfLists],
       listName: "",
     });
+ 
     event.preventDefault();
   }
 
@@ -42,20 +45,23 @@ class App extends Component {
 
     }
 
-  handleInput = (event) => {
-    this.setState({
-      input: event.target.value
-    });
-  }
+  // handleInput = (event) => {
+  //   this.setState({
+  //     input: event.target.value
+  //   });
+  // }
     
-  handleAddTask = (event) => {
-    console.log(`handleAddTask: input ${this.state.input} id ${event}`)
+  handleAddTaskToList = (input, listIndex) => {
+    console.log(`handleAddTaskToList: input ${input}, listIndex: ${listIndex}`)
+
+    let tempList = this.state.listOfLists[listIndex].title
+    console.log(`temp list in handleTaskToList: ${tempList}`)
     
     // this.setState({
     //   listOfLists: [...this.state.list, this.state.input],
     //   input: ""
     // });
-    event.preventDefault();
+    // event.preventDefault();
 
   }
   
@@ -80,9 +86,9 @@ class App extends Component {
                 tasks={this.state.list.tasks}
                 title={list.title} 
                 handleRemoveList={this.handleRemoveList} 
-                input={this.state.input}
-                handleInput={this.handleInput}
-                handleAddTask={this.handleAddTask}
+                // input={this.state.input}
+                // handleInput={this.handleInput}
+                handleAddTaskToList={this.handleAddTaskToList}
                 handleRemoveTask={this.handleRemoveTask}
             />
             )
