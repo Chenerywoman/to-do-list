@@ -7,11 +7,7 @@ class App extends Component {
 
   state = {
     listName: "",
-    listOfLists: [],
-    list: {
-      title: "",
-      tasks: []
-    }
+    listOfLists: []
   }
 
   handleListName = (event) => {
@@ -21,9 +17,12 @@ class App extends Component {
   }
 
   handleAddList = (event) => {
-  
+
     let newListOfLists = [...this.state.listOfLists]
-    let newList = {...this.state.list}
+    let newList =  {
+      title: "",
+      tasks: []
+    }
     newList.title = this.state.listName
     newListOfLists.push(newList)
   
@@ -31,14 +30,15 @@ class App extends Component {
       listOfLists: [...newListOfLists],
       listName: "",
     });
- 
+    
     event.preventDefault();
   }
 
   handleRemoveList = (ind) => {
     
     let updatedArrayofLists = [...this.state.listOfLists];
-      updatedArrayofLists.splice(ind, 1)
+    updatedArrayofLists.splice(ind, 1)
+
       this.setState({
         listOfLists: updatedArrayofLists
       });
@@ -48,7 +48,7 @@ class App extends Component {
 
     let newListOfLists = [...this.state.listOfLists];
     newListOfLists[listIndex].tasks.push(input)
-
+   
     this.setState({
       listOfLists: newListOfLists
     });
@@ -56,7 +56,6 @@ class App extends Component {
   }
   
   handleRemoveTask = (taskInd, listInd) => {
-    console.log(`in handleRemoveTask: taskInd ${taskInd}, listInd ${listInd}`)
     let newListOfLists = [...this.state.listOfLists];
     newListOfLists[listInd].tasks.splice(taskInd,1)
      
@@ -75,7 +74,7 @@ class App extends Component {
               <List 
                 key={ind} 
                 listIndex={ind} 
-                tasks={this.state.list.tasks}
+                tasks={list.tasks}
                 title={list.title} 
                 handleRemoveList={this.handleRemoveList} 
                 handleAddTaskToList={this.handleAddTaskToList}
