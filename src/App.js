@@ -7,7 +7,8 @@ class App extends Component {
 
   state = {
     listName: "",
-    listOfLists: []
+    listOfLists: [],
+    listOfTitles: []
   }
 
   handleListName = (event) => {
@@ -23,12 +24,18 @@ class App extends Component {
       title: "",
       tasks: []
     }
+    
     newList.title = this.state.listName
     newListOfLists.push(newList)
+
+    let newListOfTitles = newListOfLists.map((list, ind) =>  {
+      return list.title
+    })
   
     this.setState({
       listOfLists: [...newListOfLists],
       listName: "",
+      listOfTitles: newListOfTitles
     });
     
     event.preventDefault();
@@ -39,8 +46,13 @@ class App extends Component {
     let updatedArrayofLists = [...this.state.listOfLists];
     updatedArrayofLists.splice(ind, 1)
 
+    let newListOfTitles = updatedArrayofLists.map((list, ind) =>  {
+      return list.title
+    })
+
       this.setState({
-        listOfLists: updatedArrayofLists
+        listOfLists: updatedArrayofLists,
+        listOfTitles: newListOfTitles
       });
     }
   
@@ -64,7 +76,27 @@ class App extends Component {
       });
   }
 
-  render(){
+  handleMoveTask = (taskInd, listInd, newListInd) => {
+    let newListOfLists = [...this.state.listOfLists];
+    const taskToMove = newListOfLists[listInd].tasks[taskInd];
+
+    newListOfLists[newListInd].tasks.push(taskToMove);
+    newListOfLists[listInd].tasks.splice(taskInd, 1);
+
+    let newListOfTitles = newListOfLists.map((list, ind) =>  {
+      return list.title
+    })
+  
+    this.setState({
+      listOfLists: newListOfLists,
+      listOfTitles: newListOfTitles
+    })
+    
+    
+
+  }
+
+  render(){ 
     return (
       <div className="App">
         <h1 className="title">My Lists</h1>
@@ -79,6 +111,8 @@ class App extends Component {
                 handleRemoveList={this.handleRemoveList} 
                 handleAddTaskToList={this.handleAddTaskToList}
                 handleRemoveTask={this.handleRemoveTask}
+                handleMoveTask={this.handleMoveTask}
+                listOfTitles={this.state.listOfTitles}
             />
             )
           })}
