@@ -7,7 +7,12 @@ class App extends Component {
 
   state = {
     listName: "",
-    listOfLists: []
+    listOfLists: [],
+    input: "",
+    list: {
+      title: "",
+      tasks: []
+    }
   }
 
   handleListName = (event) => {
@@ -17,13 +22,14 @@ class App extends Component {
   }
 
   handleAddList = (event) => {
-    let tempList = [...this.state.listOfLists];
-    tempList.push(this.state.listName)
     this.setState({
-      listOfLists: [...this.state.listOfLists, this.state.listName],
+      list: {
+        title: this.state.listName,
+        tasks: []
+      },
+      listOfLists: [...this.state.listOfLists, this.state.list],
       listName: "",
     });
-    console.log(this.state.listOfLIsts)
     event.preventDefault();
   }
 
@@ -33,29 +39,53 @@ class App extends Component {
       this.setState({
         listOfLists: updatedArrayofLists
       });
+
+    }
+
+  handleInput = (event) => {
+    this.setState({
+      input: event.target.value
+    });
   }
-
-  onDragStart = () => {
+    
+  handleAddTask = (event) => {
+    console.log(`handleAddTask: input ${this.state.input} id ${event}`)
+    
+    // this.setState({
+    //   listOfLists: [...this.state.list, this.state.input],
+    //   input: ""
+    // });
+    event.preventDefault();
 
   }
-
-  onDragOver = () => {
-
-  }
-
-  onDrop = () => {
-
+  
+  handleRemoveTask = (index) => {
+      const updatedArray = [...this.state.list];
+      updatedArray.splice(index, 1)
+      this.setState({
+        list: updatedArray
+      });
   }
 
   render(){
-    console.log(`listofList in render method ${this.state.listOfLists}`)
     return (
       <div className="App">
         <h1 className="title">My Lists</h1>
         <div className="outer-container">
-          {this.state.listOfLists.map((name, ind) => {
-            console.log(name)
-            return <List key={ind} title={name} handleRemoveList={this.handleRemoveList} ind={ind} onDragStart={this.onDragStart} onDragOver={this.onDragOver} onDrop={this.onDrop}/>
+          {this.state.listOfLists.map((list, ind) => {
+            return (
+              <List 
+                key={ind} 
+                listIndex={ind} 
+                tasks={this.state.list.tasks}
+                title={list.title} 
+                handleRemoveList={this.handleRemoveList} 
+                input={this.state.input}
+                handleInput={this.handleInput}
+                handleAddTask={this.handleAddTask}
+                handleRemoveTask={this.handleRemoveTask}
+            />
+            )
           })}
            <AddListForm 
             listName={this.state.listName}

@@ -1,10 +1,10 @@
 import './Task.css'
 
-const Task = ({ task, ind, handleRemoveTask }) => {
+const Task = ({ task, ind, listIndex, handleRemoveTask }) => {
     return (
-      <div className="task">
+      <div className="task" >
         <div>{task}</div>
-        <button type="button" onClick = {() => handleRemoveTask(ind)}>
+        <button type="button" onClick = {() => handleRemoveTask(ind, listIndex)}>
           Remove
         </button>
       </div>
