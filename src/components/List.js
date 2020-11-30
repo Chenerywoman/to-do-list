@@ -3,8 +3,6 @@ import AddTaskForm from './AddTaskForm';
 import Task from './Task';
 import './List.css'
 
-// const List = ({listIndex, tasks, title, handleRemoveList, input, handleInput, handleAddTask, handleRemoveTask}) => {
-
  class List extends React.Component { 
 
   state = {
@@ -43,7 +41,9 @@ import './List.css'
             task={item} 
             ind={ind}
             listIndex={this.props.listIndex}
-            handleRemoveTask={this.props.handleRemoveTask} 
+            handleRemoveTask={this.props.handleRemoveTask}
+            handleMoveTask={this.props.handleMoveTask}
+            listOfTitles={this.props.listOfTitles}
           />
           )
         })
