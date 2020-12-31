@@ -1,9 +1,46 @@
 .task {
-    display: flex;
     border-radius: 5%;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid blue;
-    margin: 5px;
-    background-color: #427074;
+    width: 80%;
+    margin: 0.5em 0.1em; 
+    background-color: #97eaf074;
+    padding: 0.75em;
 }
+
+.task-content {
+    display:block;
+    margin: 0 0 0.5em 0;
+}
+
+.task-content p {
+    font-size: 1.5em;
+    margin: 0 0.25em 0 0;
+    color: #772E25;
+    width:70%;
+    display: inline-block;
+    word-wrap: break-word;
+}
+
+.remove-task {
+    border-radius: 15%;
+    font-family: 'Overpass', sans-serif;
+    color: #EDDDD4;
+    border: 1px solid #197278;
+    font-weight: bold;
+    background-color: #197278;
+    box-shadow: 2px 2px #283D3B;
+}
+
+button.remove-task:focus {
+    outline:none;
+    border: 2px solid #C44536;
+}
+
+@media only screen and (max-width: 300px) {
+
+    .task {
+        width: 90%;
+    }
+    .remove-task {
+        font-size: 0.75em;
+    }
+} 

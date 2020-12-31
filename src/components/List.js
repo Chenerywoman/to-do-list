@@ -48,8 +48,8 @@ import './List.css'
           )
         })
       }
-      <button id="delete-list" type="button" onClick = {() => this.props.handleRemoveList(this.props.listIndex)}>
-      Delete List
+      <button className="button delete-list" type="button" onClick = {() => this.props.handleRemoveList(this.props.listIndex)}>
+      Delete
     </button>
     </div>
   )

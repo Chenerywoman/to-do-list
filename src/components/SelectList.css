@@ -1,0 +1,28 @@
+
+.list-of-lists{
+    background-color: #EDDDD4;
+    border-radius: 15%;
+    color: #772E25;
+    margin-right: 1em;
+    max-width: 50%;
+}
+
+.move-button{
+    border-radius: 15%;
+    font-family: 'Overpass', sans-serif;
+    color: #EDDDD4;
+    border: 1px solid #772E25;
+    font-weight: bold;
+    background-color: #772E25;
+    box-shadow: 2px 2px #C44536;
+}
+
+@media only screen and (max-width: 300px) {
+
+    .list-of-lists{
+        max-width: 45%;
+    }
+    .move-button{
+        font-size: 0.75em;
+    }
+} 

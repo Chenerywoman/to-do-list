@@ -99,7 +99,15 @@ class App extends Component {
   render(){ 
     return (
       <div className="App">
-        <h1 className="title">My Lists</h1>
+        <div className="fixed-container">
+            <h1 className="title">My Lists</h1>
+            <AddListForm 
+            listName={this.state.listName}
+            handleAddList={this.handleAddList}
+            handleListName={this.handleListName}
+            />
+        </div>
+        
         <div className="outer-container">
           {this.state.listOfLists.map((list, ind) => {
             return (
@@ -116,11 +124,6 @@ class App extends Component {
             />
             )
           })}
-           <AddListForm 
-            listName={this.state.listName}
-            handleAddList={this.handleAddList}
-            handleListName={this.handleListName}
-          />
         </div>
       </div>
     );

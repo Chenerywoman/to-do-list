@@ -1,8 +1,10 @@
+import './AddTaskForm.css'
+
 const AddTaskForm = ({value, handleInput, listIndex, handleAddTask}) => {
     return ( 
-      <form id={listIndex} onSubmit={handleAddTask} action="">
-       <input value={value} onChange={handleInput} type="text"/>
-       <button type="submit">Add Task</button>
+      <form className="form add-task" id={listIndex} onSubmit={handleAddTask} action="">
+       <input className="input add-task" value={value} onChange={handleInput} type="text"/>
+       <button className="button add-task" type="submit">Add</button>
       </form>
     )
    }

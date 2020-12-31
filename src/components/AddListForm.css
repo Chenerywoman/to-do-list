@@ -1,0 +1,51 @@
+.form.add-list{
+  width: 100%;
+}
+
+
+.button.add-list {
+    font-size: 1.5rem;
+    border-radius: 15%;
+    font-family: 'Overpass', sans-serif;
+    padding: 0.25rem;
+    margin: 1rem;
+    background-color: #C44536;
+    color: #283D3B;
+    border: 2px solid #772E25;
+    box-shadow: 3px 3px #772E25
+  }
+
+.button.add-list:focus{
+    outline: none;
+    border: 2px solid #197278;
+  }
+
+.input.add-list{
+    height: 2rem;
+    width: 15rem;
+    border: 2px solid #772E25;
+    border-radius: 15%;
+    font-size: 1.5rem;
+    font-family: 'Overpass', sans-serif;
+    color:#772E25;
+}
+
+.input.add-list:focus{
+  outline:none;
+  border: 2px solid #197278
+
+}
+
+@media only screen and (max-width: 450px) {
+  .input.add-list{
+    height: 1.75rem;
+    width: 10rem;
+    font-size: 1rem;
+  }
+
+  .button.add-list {
+    font-size: 1rem;
+  }
+}
+
+

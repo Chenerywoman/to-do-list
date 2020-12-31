@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './SelectList.css'
 
 class SelectList extends Component {
 
@@ -23,10 +24,10 @@ class SelectList extends Component {
 
     render () {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form class="select-list" onSubmit={this.handleSubmit}>
             <label>
             move to:
-            <select value={this.state.value} onChange={this.handleChange}>
+            <select class="list-of-lists" value={this.state.value} onChange={this.handleChange}>
                 {this.props.listOfTitles.map((title, ind) => {
                     return (
                     <option key={ind} value={title}>{title}</option>
@@ -34,7 +35,7 @@ class SelectList extends Component {
                 })}
             </select>
             </label>
-            <input type="submit" value="Submit" />
+            <input className="move-button" type="submit" value="Move" />
         </form>
     )
     }

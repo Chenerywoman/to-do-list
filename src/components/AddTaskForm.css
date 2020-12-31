@@ -1,0 +1,39 @@
+.form.add-task {
+    width: 90%;
+}
+
+.input.add-task {
+    border-radius: 15%;
+    border: 1px solid #283D3B;
+    background-color: #EDDDD4;
+    width: 12rem;
+    height: 1.5rem;
+    font-family: 'Overpass', sans-serif;
+    color: #283D3B;
+    margin: 0 auto 1em 0;
+  }
+  
+  .input.add-task:focus {
+    outline: none;
+    border: 2px solid #C44536;
+  }
+  
+  .button.add-task {
+    border-radius: 15%;
+    font-family: 'Overpass', sans-serif;
+    margin-left: 0.5em;
+    color: #283D3B;
+    background-color: #C44536;
+    box-shadow: 1px 1px #772E25;
+    font-weight: bold;
+  }
+  
+  .button.add-task:focus{
+    outline: none;
+  }
+  
+  @media only screen and (max-width: 450px) {
+    .input.add-task {
+      width: 10rem
+    }
+  }

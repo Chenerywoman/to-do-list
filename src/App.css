@@ -1,15 +1,68 @@
-.App {
-  padding: 10px;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Yellowtail&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overpass&display=swap');
+
+body {
   background-color: #EDDDD4;
+  margin:0;
+}
+
+.App {
+  text-align: center;
+  font-family: 'Yellowtail', cursive;
 }
 
 h1 {
-  color: #197278
+  color: #197278;
+  font-size: 4rem;
+  margin: 1rem
+}
+
+.fixed-container{
+  position:fixed;
+  top:0;
+  width: 100%;
+  background-color: #EDDDD4;
 }
 
 .outer-container {
+  margin-top: 12em;
   display: flex;
-  border: 1px solid black;
+  flex-direction: row;
+  align-items: flex-start;
+  overflow: scroll;
+  background-color: rebeccapurple;
 }
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+ 
+  .outer-container{
+    overflow: scroll;
+  }
+
+}
+  
+  /* iPads (portrait) ----------- */
+  @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+
+    .outer-container{
+      flex-wrap: wrap;
+      width: 95%;
+      margin: 12em auto;
+      justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+  h1{
+    font-size: 3em;
+  }
+  
+  .outer-container {
+    margin-top: 12em;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 

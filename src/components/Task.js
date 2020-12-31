@@ -5,10 +5,12 @@ const Task = ({ task, ind, listIndex, handleRemoveTask, handleMoveTask, listOfTi
 
     return (
       <div className="task" >
-        <div>{task}</div>
-        <button type="button" onClick = {() => handleRemoveTask(ind, listIndex)}>
-          Remove
-        </button>
+        <div class="task-content">
+          <p>{task}</p>
+          <button class="remove-task" type="button" onClick = {() => handleRemoveTask(ind, listIndex)}>
+            Remove
+          </button>
+        </div>
         <SelectList
           listIndex={listIndex}
           taskIndex={ind}
