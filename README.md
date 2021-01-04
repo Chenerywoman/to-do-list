@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# List project using React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This was a CodeNation frontend project to practise using React.  
+The project set up was done using create-react-app. 
 
-## Available Scripts
+## Project Brief
 
-In the project directory, you can run:
+The project brief was to use React to create a list webpage where tasks could be added and removed.  
 
-### `npm start`
+## First stage: creating lists and tasks
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I decided to extend my project from the basic brief by creating the functionality to add multiple lists.  Tasks could then be added and removed from lists.  
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+I created a List component with it's own state and methods to add and remove tasks.  The method to remove a task was passed down into the Task component via the props object using object destructuring. 
 
-### `npm test`
+## Second stage: moving tasks to other lists
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I extended the project further by adding the functionality to move tasks between lists. 
 
-### `npm run build`
+In order to do this, I first moved the methods to add and remove tasks from the List component up to the App class. Then I created a method for removing the task from it's current list and adding it to the new one (handleMoveTask). handleMoveTask also updates the array of lists in state.  It takes the task index, current list index and requested list index as parameters. The method 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I created a SelectList component which was rendered inside the Task component.  The SelectList component is passed the task and list indexes, the handleMoveTask method and an array of list titles.  SelectList renders the list titles in an html select element. It captures the selected list (to move the task to) in local state using a handleChange method.  When the selected list is confirmed by a submit event, the handleSubmit method calls the handleMoveTask (passed down from the App component via props) with the task's index, current list index and the chosen list index. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Final stage: styling and responsiveness
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Once the functionality was working, I used a helpful website (https://coolors.co/) to help me come up with a colour scheme for the webpage.  
 
-### `npm run eject`
+I then worked on styling the webpage and making it responsive to different screen sizes, using media queries where required.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
